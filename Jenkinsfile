@@ -1,13 +1,20 @@
-node{
-  stage('Build'){
+node {
+  stage('Build') {
     echo 'building'
+    // Simulate success by setting the result explicitly
+    currentBuild.result = 'SUCCESS'
   }
-  stage('Test'){
+  
+  stage('Test') {
     echo 'testing'
   }
-  if (currentBuild.result=='SUCCESS'){
-    echo 'looks good'
-  }else{
-    echo 'failed'
+  
+  script {
+    // Check the build result
+    if (currentBuild.result == 'SUCCESS') {
+      echo 'looks good'
+    } else {
+      echo 'failed'
+    }
   }
 }
